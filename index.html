@@ -363,6 +363,9 @@ main{position:relative}
 .hc-tools p{font-family:"JetBrains Mono",monospace;font-size:.8rem}
 .hc-cover{position:relative;height:clamp(150px,30vh,270px);border-radius:20px;overflow:hidden;border:2px solid var(--ink);box-shadow:var(--shadow);transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
 .hc-cover:hover{transform:translateY(-6px) rotate(-1deg) scale(1.02)}
+.hc-cover a{display:block;width:100%;height:100%}
+.hc-cover img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s ease}
+.hc-cover:hover img{transform:scale(1.04)}
 .hc-desc{color:var(--ink-soft);font-size:.93rem}
 .hcard details{max-height:24vh;overflow:auto}
 .hcard.more{justify-content:center;align-items:center;text-align:center;color:var(--ink-soft);gap:6px}
@@ -618,6 +621,16 @@ const CERTS = [
 const PROJECTS = [
   /* Add each project like this — "link" is optional; when set, the whole card opens it
   { title:"", desc:"", stack:["Python"], category:"Web app", cover:"", link:"https://..." }, */
+  { title:"Tahdiri (تحضيري) — Lesson Plans & Worksheets for Teachers",
+    desc:"A live web app I built for teachers: type a lesson name and get a ready weekly, monthly or term plan full of activities, then edit it and export it. Designed with a real teacher's week in mind.",
+    points:[
+      "Generates weekly, monthly and term plans from kindergarten to secondary, with ready-made unit templates.",
+      "Customisable plan fields: objectives with Bloom's levels, success criteria, learning centres, differentiation, resources and assessment.",
+      "Click any cell to edit the plan directly, then export to PDF or Word, or print.",
+      "Turns a plan into a worksheet, a rubric (سلّم تقدير) or a message to parents.",
+      "Arabic and English interface, Hijri + Gregorian dates, and user accounts that save your files."],
+    stack:["JavaScript","HTML","CSS","i18n (AR/EN)","PDF & Word export","User accounts"],
+    category:"EdTech · Web app", image:"assets/projects/tahdiri.png", link:"https://myplan.shadhadev99.online/" },
   { title:"MyDigital ID — User Feedback Sentiment Analysis",
     desc:"How do users really feel about the MyDigital ID app? I collected real user reviews and compared lexicon-based and machine-learning approaches to find out.",
     points:[
@@ -654,7 +667,7 @@ PROJECTS.forEach((p,i)=>{
   const title=p.link?`<a class="plink" href="${p.link}" target="_blank" rel="noopener">${p.title} <span>↗</span></a>`:p.title;
   el.innerHTML=`<div class="hc-top"><span class="hc-num">${String(i+1).padStart(2,'0')}</span><div class="hc-title"><h3>${title}</h3><span class="hc-cat">${p.category||''}</span></div></div>
     <div class="hc-tools"><b>Tools and features</b><p>${p.stack.join(', ')}</p></div>
-    <div class="hc-cover">${COVERS[p.cover]||''}</div><p class="hc-desc">${p.desc}</p>${pts}`;
+    <div class="hc-cover">${COVERS[p.cover]||(p.image?`${p.link?`<a href="${p.link}" target="_blank" rel="noopener" aria-label="Open ${p.title}">`:''}<img src="${p.image}" alt="Screenshot of ${p.title}" loading="lazy">${p.link?'</a>':''}`:'')}</div><p class="hc-desc">${p.desc}</p>${pts}`;
   projGrid.appendChild(el);
 });
 projGrid.insertAdjacentHTML('beforeend','<article class="hcard more"><div class="plus">＋</div><b>Next project loading…</b><span>New builds land here.</span></article>');
