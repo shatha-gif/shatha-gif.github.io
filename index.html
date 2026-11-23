@@ -621,7 +621,7 @@ const CERTS = [
 const PROJECTS = [
   /* Add each project like this — "link" is optional; when set, the whole card opens it
   { title:"", desc:"", stack:["Python"], category:"Web app", cover:"", link:"https://..." }, */
-  { title:"MyPlan (خطّتي) — Lesson Plans & Worksheets for Teachers",
+  { title:"MyPlan (<bdi>خطّتي</bdi>) — Lesson Plans & Worksheets for Teachers",
     desc:"A live web app I built for teachers: type a lesson name and get a ready weekly, monthly or term plan full of activities, then edit it and export it. Designed with a real teacher's week in mind.",
     points:[
       "Generates weekly, monthly and term plans from kindergarten to secondary, with ready-made unit templates.",
@@ -631,6 +631,16 @@ const PROJECTS = [
       "Arabic and English interface, Hijri + Gregorian dates, and user accounts that save your files."],
     stack:["JavaScript","HTML","CSS","i18n (AR/EN)","PDF & Word export","User accounts"],
     category:"EdTech · Web app", image:"assets/projects/tahdiri.png", link:"https://myplan.shadhadev99.online/" },
+  { title:"Little Learners (<bdi>رواد الطفولة</bdi>) — Learning App for Kids",
+    desc:"A live, bilingual learning app for children aged 3–12: each subject is a planet to explore, with letters, reading, maths and games, plus an assessment and a progress board.",
+    points:[
+      "Arabic letters: recognising, hearing (recorded audio), letter position in a word, short vowels (الحركات) and reading words and sentences.",
+      "Finger tracing on a canvas that checks the child stayed on the letter and covered all of it.",
+      "Maths from counting, comparing and ordering numbers, shapes and colours up to + − × ÷.",
+      "Games: memory, number ordering and a 30-second maths race, with levels, stars and encouraging feedback.",
+      "Child accounts and progress saved on the server (PHP + MySQL API), Arabic and English interface."],
+    stack:["JavaScript","HTML Canvas","CSS","Web Audio / Speech","PHP","MySQL"],
+    category:"EdTech · Kids web app", image:"assets/projects/little-learners.jpg", link:"https://littlelearners.shadhadev99.online/" },
   { title:"MyDigital ID — User Feedback Sentiment Analysis",
     desc:"How do users really feel about the MyDigital ID app? I collected real user reviews and compared lexicon-based and machine-learning approaches to find out.",
     points:[
@@ -667,7 +677,7 @@ PROJECTS.forEach((p,i)=>{
   const title=p.link?`<a class="plink" href="${p.link}" target="_blank" rel="noopener">${p.title} <span>↗</span></a>`:p.title;
   el.innerHTML=`<div class="hc-top"><span class="hc-num">${String(i+1).padStart(2,'0')}</span><div class="hc-title"><h3>${title}</h3><span class="hc-cat">${p.category||''}</span></div></div>
     <div class="hc-tools"><b>Tools and features</b><p>${p.stack.join(', ')}</p></div>
-    <div class="hc-cover">${COVERS[p.cover]||(p.image?`${p.link?`<a href="${p.link}" target="_blank" rel="noopener" aria-label="Open ${p.title}">`:''}<img src="${p.image}" alt="Screenshot of ${p.title}" loading="lazy">${p.link?'</a>':''}`:'')}</div><p class="hc-desc">${p.desc}</p>${pts}`;
+    <div class="hc-cover">${COVERS[p.cover]||(p.image?`${p.link?`<a href="${p.link}" target="_blank" rel="noopener" aria-label="Open ${p.title.replace(/<[^>]+>/g,"")}">`:''}<img src="${p.image}" alt="Screenshot of ${p.title.replace(/<[^>]+>/g,"")}" loading="lazy">${p.link?'</a>':''}`:'')}</div><p class="hc-desc">${p.desc}</p>${pts}`;
   projGrid.appendChild(el);
 });
 projGrid.insertAdjacentHTML('beforeend','<article class="hcard more"><div class="plus">＋</div><b>Next project loading…</b><span>New builds land here.</span></article>');
