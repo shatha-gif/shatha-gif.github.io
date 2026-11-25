@@ -413,6 +413,17 @@ main{position:relative}
 .cv-git .term i{display:inline-block;width:7px;height:13px;background:#7dd3a8;vertical-align:-2px;margin-left:3px;animation:pulse 1s steps(2) infinite}
 .cv-git .git-tag{position:absolute;right:6%;bottom:2.5%;font:600 .62rem "JetBrains Mono",monospace;letter-spacing:.14em;color:#9aa8bb}
 
+/* AlgoLab cover: shuffled bars that sort themselves, plus a step message */
+.cv-algo{position:absolute;inset:0;background:#1e2a3a;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:18px 18px;overflow:hidden}
+.cv-algo .al-bars{position:absolute;left:9%;right:9%;top:10%;height:54%;display:flex;align-items:flex-end;gap:4%}
+.cv-algo .al-bars i{flex:1;border-radius:6px 6px 2px 2px;height:var(--a);background:#9fb0c6;animation:alSort 6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes alSort{0%,12%{height:var(--a);background:#9fb0c6}22%{background:#f4b740}32%{background:#ff8a73}45%,88%{height:var(--b);background:#7dd3a8}100%{height:var(--a);background:#9fb0c6}}
+.cv-algo .al-msg{position:absolute;left:8%;right:8%;bottom:13%;background:#0b0f16;border-radius:10px;padding:7px 12px;font:600 .72rem "JetBrains Mono",monospace;color:#e7ecf3;box-shadow:0 8px 18px rgba(0,0,0,.35);white-space:nowrap;overflow:hidden}
+.cv-algo .al-msg b{color:#f4b740}
+.cv-algo .al-msg em{font-style:normal;color:#7dd3a8}
+.cv-algo .al-tag{position:absolute;right:6%;bottom:2.5%;font:600 .62rem "JetBrains Mono",monospace;letter-spacing:.14em;color:#9aa8bb}
+@media (prefers-reduced-motion:reduce){.cv-algo .al-bars i{animation:none;height:var(--b);background:#7dd3a8}}
+
 /* smooth scrolling library */
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
@@ -679,6 +690,16 @@ const PROJECTS = [
       "Intro page that explains what Git is and what learners gain; Arabic and English, light and dark themes, works on mobile."],
     stack:["JavaScript","SVG animation","HTML","CSS","Simulation engine","i18n (AR/EN)"],
     category:"EdTech · Developer education", cover:"gitsketch", link:"https://gitsketch.shadhadev99.online/" },
+  { title:"AlgoLab (<bdi>مختبر الخوارزميات</bdi>) — Watch Algorithms Think",
+    desc:"A live, bilingual algorithm visualizer: learners watch sorting and searching algorithms run step by step, with a plain-language sentence, the current line of pseudocode and live counters at every step.",
+    points:[
+      "Seven algorithms (bubble, selection, insertion, merge and quick sort, plus linear and binary search), recorded as frames so learners can play, pause and step forward or back.",
+      "Every step explains itself: colour-coded bars, a sentence in Arabic or English, the highlighted pseudocode line, pointers (i, j, lo, mid, hi) and comparison and write counters.",
+      "A guided lesson for each algorithm with what to watch, a follow-up experiment and progress ticks, after an intro page that explains what algorithms are and why they matter.",
+      "Race mode runs two sorts on the same data side by side, so the difference between O(n²) and O(n log n) becomes visible.",
+      "Data presets (random, nearly sorted, reversed, few unique) or your own numbers, optional sound, light and dark themes, and it works on mobile."],
+    stack:["JavaScript","HTML","CSS","Algorithms & data structures","Web Audio API","i18n (AR/EN)"],
+    category:"EdTech · Computer science education", cover:"algolab", link:"https://algolab.shadhadev99.online/" },
   { title:"MyDigital ID — User Feedback Sentiment Analysis",
     desc:"How do users really feel about the MyDigital ID app? I collected real user reviews and compared lexicon-based and machine-learning approaches to find out.",
     points:[
@@ -707,6 +728,7 @@ const projGrid=document.getElementById('projGrid');
 const COVERS={
   mydigital:`<div class="cv-mdid"><div class="md-phone"><svg class="md-shield" viewBox="0 0 46 52" fill="none" stroke="#0d63fe" stroke-width="2.6" stroke-linecap="round"><path d="M23 3 L41 10 V25 C41 37 33 45 23 49 C13 45 5 37 5 25 V10 Z" fill="#e8f0ff"/><path d="M16 27a7 7 0 0 1 14 0v3"/><path d="M19.5 27a3.5 3.5 0 0 1 7 0v6"/><path d="M23 27v8"/><path d="M13 23a10 10 0 0 1 20 0"/></svg><b>MyDigital ID</b><small>User feedback</small><div class="md-bars"><i style="--bc:#16a34a;--w:90%;--d:0s"></i><i style="--bc:#f6c344;--w:60%;--d:-.8s"></i><i style="--bc:#ef4444;--w:40%;--d:-1.6s"></i></div></div><span class="md-bub b1">😊 Positive</span><span class="md-bub b2">😐 Neutral</span><span class="md-bub b3">😠 Negative</span><span class="md-tag">SENTIMENT · NLP</span></div>`,
   gitsketch:`<div class="cv-git"><svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid meet"><path class="ge" d="M30 110H120"/><path class="ge" d="M120 110H210"/><path class="ge br late" d="M120 110C160 110 160 45 200 45H270"/><path class="ge late2" d="M210 110H360"/><path class="ge br late2" d="M270 45C315 45 315 110 360 110"/><g class="gn"><circle cx="30" cy="110" r="15"/><text x="30" y="110">C0</text></g><g class="gn"><circle cx="120" cy="110" r="15"/><text x="120" y="110">C1</text></g><g class="gn"><circle cx="210" cy="110" r="15"/><text x="210" y="110">C2</text></g><g class="gn br late"><circle cx="200" cy="45" r="15"/><text x="200" y="45">C3</text></g><g class="gn br late"><circle cx="270" cy="45" r="15"/><text x="270" y="45">C4</text></g><g class="gn late2"><circle cx="360" cy="110" r="15"/><text x="360" y="110">C5</text></g><g class="gl late"><rect x="240" y="8" width="62" height="20" rx="7"/><text x="271" y="18">feature</text></g><g class="gl head late2"><rect x="322" y="62" width="76" height="20" rx="7"/><text x="360" y="72">HEAD→main</text></g></svg><div class="term"><b>main $</b> git merge feature<i></i></div><span class="git-tag">GIT · VISUAL LEARNING</span></div>`,
+  algolab:`<div class="cv-algo"><div class="al-bars"><i style="--a:55%;--b:15%;--d:0s"></i><i style="--a:25%;--b:25%;--d:.12s"></i><i style="--a:85%;--b:35%;--d:.24s"></i><i style="--a:40%;--b:40%;--d:.36s"></i><i style="--a:95%;--b:55%;--d:.48s"></i><i style="--a:15%;--b:70%;--d:.6s"></i><i style="--a:70%;--b:85%;--d:.72s"></i><i style="--a:35%;--b:95%;--d:.84s"></i></div><div class="al-msg"><b>85 &gt; 40</b> → swap · <em>O(n log n)</em></div><span class="al-tag">SORT · SEARCH · STEP BY STEP</span></div>`,
   portfolio:`<div class="cv-port"><div class="row"><div class="blk" style="--i:0;background:var(--red)">A</div><div class="blk" style="--i:1;background:var(--yellow)">B</div><div class="blk" style="--i:2;background:var(--green)">C</div><div class="blk" style="--i:3;background:var(--blue)">{ }</div></div></div>`
 };
 const pc=['var(--purple)','var(--blue)','var(--green)','var(--red)','var(--yellow)'];
