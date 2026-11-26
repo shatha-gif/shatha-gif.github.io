@@ -424,6 +424,19 @@ main{position:relative}
 .cv-algo .al-tag{position:absolute;right:6%;bottom:2.5%;font:600 .62rem "JetBrains Mono",monospace;letter-spacing:.14em;color:#9aa8bb}
 @media (prefers-reduced-motion:reduce){.cv-algo .al-bars i{animation:none;height:var(--b);background:#7dd3a8}}
 
+/* WordMap cover: a topic circle whose words branch out like a mind map */
+.cv-wmap{position:absolute;inset:0;background:#202a47;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:18px 18px;overflow:hidden}
+.cv-wmap svg{position:absolute;inset:0;width:100%;height:100%}
+.cv-wmap line{stroke-width:2.2;stroke-linecap:round;opacity:.6;stroke-dasharray:120;animation:wmLine 6s ease-out infinite;animation-delay:var(--d)}
+.cv-wmap .hubc{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border-radius:50%;background:#2b5fd9;border:4px solid #7ea6ff;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font:800 .78rem/1.15 "Nunito",sans-serif;box-shadow:0 8px 22px rgba(43,95,217,.45)}
+.cv-wmap .hubc span{font-size:1.25rem;line-height:1.1}
+.cv-wmap .hubc small{font:500 .62rem "IBM Plex Sans Arabic",sans-serif;opacity:.9}
+.cv-wmap .wn{position:absolute;transform:translate(-50%,-50%);background:#fff;color:#22304f;border:2px solid var(--c);border-radius:999px;padding:2px 9px;font:700 .68rem/1.3 "Nunito",sans-serif;white-space:nowrap;animation:wmPop 6s cubic-bezier(.2,.9,.3,1.3) infinite;animation-delay:var(--d)}
+.cv-wmap .wm-tag{position:absolute;right:6%;bottom:2.5%;font:600 .62rem "JetBrains Mono",monospace;letter-spacing:.14em;color:#a9b6d6}
+@keyframes wmPop{0%,8%{opacity:0;transform:translate(-50%,-50%) scale(.3)}16%,90%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.3)}}
+@keyframes wmLine{0%,5%{stroke-dashoffset:120}14%,90%{stroke-dashoffset:0}100%{stroke-dashoffset:120}}
+@media (prefers-reduced-motion:reduce){.cv-wmap .wn,.cv-wmap line{animation:none}}
+
 /* smooth scrolling library */
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
@@ -700,6 +713,16 @@ const PROJECTS = [
       "Data presets (random, nearly sorted, reversed, few unique) or your own numbers, optional sound, light and dark themes, and it works on mobile."],
     stack:["JavaScript","HTML","CSS","Algorithms & data structures","Web Audio API","i18n (AR/EN)"],
     category:"EdTech · Computer science education", cover:"algolab", link:"https://algolab.shadhadev99.online/" },
+  { title:"WordMap (<bdi>خريطة الكلمات</bdi>) — English Vocabulary as Mind Maps",
+    desc:"A live, bilingual vocabulary app for Arabic speakers: each topic is a circle, and tapping it branches out all its related words like a mind map, each with pronunciation, an Arabic meaning and three example sentences.",
+    points:[
+      "Wrote a 720-word bank across 30 topics (education, travel, work, science, space…), 24 words per topic split into beginner, intermediate and advanced, with 2,160 graded example sentences and their Arabic translations.",
+      "Animated mind map: words fly out of the topic circle along drawn lines, with three rings when all levels are shown and a layout pass that keeps labels from overlapping on any screen size.",
+      "Word card with text-to-speech at normal and slow speed for every word and sentence, the word highlighted in each sentence (including irregular forms like bought or feet), and tap-to-reveal translations.",
+      "Search across all 720 words in English or Arabic, progress rings on each topic, and shareable links that open a topic directly.",
+      "Intro page that explains the mind-map method and what learners gain; Arabic and English interface, light and dark themes, works on mobile."],
+    stack:["JavaScript","HTML","CSS","Web Speech API","SVG animation","i18n (AR/EN)","Content design"],
+    category:"EdTech · Language learning", cover:"wordmap", link:"https://wordmap.shadhadev99.online/" },
   { title:"MyDigital ID — User Feedback Sentiment Analysis",
     desc:"How do users really feel about the MyDigital ID app? I collected real user reviews and compared lexicon-based and machine-learning approaches to find out.",
     points:[
@@ -729,6 +752,7 @@ const COVERS={
   mydigital:`<div class="cv-mdid"><div class="md-phone"><svg class="md-shield" viewBox="0 0 46 52" fill="none" stroke="#0d63fe" stroke-width="2.6" stroke-linecap="round"><path d="M23 3 L41 10 V25 C41 37 33 45 23 49 C13 45 5 37 5 25 V10 Z" fill="#e8f0ff"/><path d="M16 27a7 7 0 0 1 14 0v3"/><path d="M19.5 27a3.5 3.5 0 0 1 7 0v6"/><path d="M23 27v8"/><path d="M13 23a10 10 0 0 1 20 0"/></svg><b>MyDigital ID</b><small>User feedback</small><div class="md-bars"><i style="--bc:#16a34a;--w:90%;--d:0s"></i><i style="--bc:#f6c344;--w:60%;--d:-.8s"></i><i style="--bc:#ef4444;--w:40%;--d:-1.6s"></i></div></div><span class="md-bub b1">😊 Positive</span><span class="md-bub b2">😐 Neutral</span><span class="md-bub b3">😠 Negative</span><span class="md-tag">SENTIMENT · NLP</span></div>`,
   gitsketch:`<div class="cv-git"><svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid meet"><path class="ge" d="M30 110H120"/><path class="ge" d="M120 110H210"/><path class="ge br late" d="M120 110C160 110 160 45 200 45H270"/><path class="ge late2" d="M210 110H360"/><path class="ge br late2" d="M270 45C315 45 315 110 360 110"/><g class="gn"><circle cx="30" cy="110" r="15"/><text x="30" y="110">C0</text></g><g class="gn"><circle cx="120" cy="110" r="15"/><text x="120" y="110">C1</text></g><g class="gn"><circle cx="210" cy="110" r="15"/><text x="210" y="110">C2</text></g><g class="gn br late"><circle cx="200" cy="45" r="15"/><text x="200" y="45">C3</text></g><g class="gn br late"><circle cx="270" cy="45" r="15"/><text x="270" y="45">C4</text></g><g class="gn late2"><circle cx="360" cy="110" r="15"/><text x="360" y="110">C5</text></g><g class="gl late"><rect x="240" y="8" width="62" height="20" rx="7"/><text x="271" y="18">feature</text></g><g class="gl head late2"><rect x="322" y="62" width="76" height="20" rx="7"/><text x="360" y="72">HEAD→main</text></g></svg><div class="term"><b>main $</b> git merge feature<i></i></div><span class="git-tag">GIT · VISUAL LEARNING</span></div>`,
   algolab:`<div class="cv-algo"><div class="al-bars"><i style="--a:55%;--b:15%;--d:0s"></i><i style="--a:25%;--b:25%;--d:.12s"></i><i style="--a:85%;--b:35%;--d:.24s"></i><i style="--a:40%;--b:40%;--d:.36s"></i><i style="--a:95%;--b:55%;--d:.48s"></i><i style="--a:15%;--b:70%;--d:.6s"></i><i style="--a:70%;--b:85%;--d:.72s"></i><i style="--a:35%;--b:95%;--d:.84s"></i></div><div class="al-msg"><b>85 &gt; 40</b> → swap · <em>O(n log n)</em></div><span class="al-tag">SORT · SEARCH · STEP BY STEP</span></div>`,
+  wordmap:`<div class="cv-wmap"><svg viewBox="0 0 400 225" preserveAspectRatio="none" aria-hidden="true"><line x1="200" y1="99" x2="62" y2="40" stroke="#3fcf94" style="--d:.1s"/><line x1="200" y1="99" x2="338" y2="40" stroke="#3fcf94" style="--d:.25s"/><line x1="200" y1="99" x2="48" y2="118" stroke="#6aa8f5" style="--d:.4s"/><line x1="200" y1="99" x2="352" y2="118" stroke="#6aa8f5" style="--d:.55s"/><line x1="200" y1="99" x2="88" y2="180" stroke="#b39cff" style="--d:.7s"/><line x1="200" y1="99" x2="312" y2="180" stroke="#b39cff" style="--d:.85s"/></svg><div class="hubc"><span>🎓</span>Education<small>التعليم</small></div><b class="wn" style="left:15.5%;top:18%;--c:#3fcf94;--d:.1s">school</b><b class="wn" style="left:84.5%;top:18%;--c:#3fcf94;--d:.25s">teacher</b><b class="wn" style="left:12%;top:52%;--c:#6aa8f5;--d:.4s">exam</b><b class="wn" style="left:88%;top:52%;--c:#6aa8f5;--d:.55s">library</b><b class="wn" style="left:22%;top:80%;--c:#b39cff;--d:.7s">curriculum</b><b class="wn" style="left:78%;top:80%;--c:#b39cff;--d:.85s">scholarship</b><span class="wm-tag">VOCABULARY · MIND MAPS</span></div>`,
   portfolio:`<div class="cv-port"><div class="row"><div class="blk" style="--i:0;background:var(--red)">A</div><div class="blk" style="--i:1;background:var(--yellow)">B</div><div class="blk" style="--i:2;background:var(--green)">C</div><div class="blk" style="--i:3;background:var(--blue)">{ }</div></div></div>`
 };
 const pc=['var(--purple)','var(--blue)','var(--green)','var(--red)','var(--yellow)'];
